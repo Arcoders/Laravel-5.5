@@ -11,8 +11,12 @@
 |
 */
 
-Route::view('/', 'welcome', [
-    'name' => 'Ismael Haytam'
-]);
+use App\Mail\WelcomeUser;
 
-Route::redirect('welcome', '/');
+Route::get('/', function() {
+  return view('welcome');
+});
+
+Route::get('email', function() {
+  return new WelcomeUser('Ismael Haytam');
+});
