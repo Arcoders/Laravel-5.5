@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome', [
+    'name' => 'Ismael Haytam'
+]);
+
+Route::redirect('welcome', '/');
