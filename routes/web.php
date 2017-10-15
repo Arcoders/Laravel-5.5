@@ -12,11 +12,12 @@
 */
 
 use App\Mail\WelcomeUser;
+use App\UserProfile;
 
 Route::get('/', function() {
   return view('welcome');
 });
 
-Route::get('email', function() {
-  return new WelcomeUser('Ismael Haytam');
+Route::get('profile', function () {
+  return factory(UserProfile::class)->create();
 });
