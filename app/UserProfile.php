@@ -14,4 +14,10 @@ class UserProfile extends Model
     {
       return $this->hasOne(User::class);
     }
+
+    public function getTwitterUrlAttribute()
+    {
+      return 'https://twitter.com/' . $this->twitter;
+    }
+
 }

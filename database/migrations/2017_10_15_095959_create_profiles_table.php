@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->mediumText('bio');
-            $table->string('twitter');
+            $table->string('twitter')->unique();
             $table->string('github');
 
             $table->timestamps();
