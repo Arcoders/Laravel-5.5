@@ -18,6 +18,4 @@ Route::get('/', function() {
   return view('welcome');
 });
 
-Route::get('profile', function () {
-  return factory(UserProfile::class)->create();
-});
+Route::put('profile', 'ProfileController@update');
