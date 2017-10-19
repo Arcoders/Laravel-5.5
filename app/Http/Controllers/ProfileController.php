@@ -3,23 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
 
-  public function update()
+  public function update(UpdateProfileRequest $request)
   {
-    $this->validate(request(), [
-      'bio' => 'required',
-      'twitter' => 'alpha_num',
-      'github' => 'alpha_num'
-    ]);
-
-    $data = request()->all();
-
     $profile = auth()->user()->profile;
 
-    $profile->fill($data);
+    $profile->fill($request->validated());
 
     $profile->save();
   }
