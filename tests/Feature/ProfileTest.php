@@ -17,7 +17,6 @@ class ProfileTest extends TestCase
      */
     public function update_user_profile()
     {
-        $this->withoutMiddleware();
         $user = factory(User::class)->create();
 
         $this->actingAs($user)->put('profile', [
@@ -42,7 +41,7 @@ class ProfileTest extends TestCase
           'bio' => 'Programador de Laravel',
           'twitter' => '@[</script]',
           'github' => 'Ismael',
-        ])->assertSessionHasErrors(['twitter']);
+        ])->assertStatus(302)->assertSessionHasErrors(['twitter']);
 
         $this->assertDatabaseMissing('profiles', [
           'user_id' => $user->id
