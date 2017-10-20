@@ -47,4 +47,20 @@ class ProfileTest extends TestCase
           'user_id' => $user->id
         ]);
     }
+
+    public function bio_validation()
+    {
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->put('profile', [
+          'bio' => 'Lorem ipsum',
+          'twitter' => 'Ismael',
+          'github' => 'Ismael',
+        ])->assertStatus(302)->assertSessionHasErrors(['bio']);
+
+        $this->assertDatabaseMissing('profiles', [
+          'user_id' => $user->id
+        ]);
+    }
+
 }

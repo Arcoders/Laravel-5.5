@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\RealText;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-          'bio' => 'required',
+          'bio' => ['required', new RealText()],
           'twitter' => 'alpha_num',
           'github' => 'alpha_num'
         ];
